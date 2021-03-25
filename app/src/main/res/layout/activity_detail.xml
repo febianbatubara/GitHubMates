@@ -213,10 +213,10 @@
             android:layout_marginEnd="@dimen/dimen_32dp"
             android:background="@color/lightGrey" />
 
-        <androidx.viewpager2.widget.ViewPager2
+        <com.febian.android.githubmates.utils.WrapContentViewPager
             android:id="@+id/view_pager_detail"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_below="@id/tabs_detail"
             android:layout_marginStart="@dimen/dimen_16dp"
             android:layout_marginTop="@dimen/dimen_4dp"

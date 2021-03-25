@@ -3,20 +3,19 @@ package com.febian.android.githubmates.activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import androidx.annotation.StringRes
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.febian.android.githubmates.R
-import com.febian.android.githubmates.adapter.SectionsPagerAdapter
+import com.febian.android.githubmates.adapter.PagerAdapter
 import com.febian.android.githubmates.api.RetrofitService
 import com.febian.android.githubmates.databinding.ActivityDetailBinding
 import com.febian.android.githubmates.fragment.FollowersFragment
+import com.febian.android.githubmates.fragment.FollowingFragment
 import com.febian.android.githubmates.model.User
+import com.febian.android.githubmates.utils.WrapContentViewPager
 import com.google.android.material.tabs.TabLayout
-import com.google.android.material.tabs.TabLayoutMediator
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -34,12 +33,6 @@ class DetailActivity : AppCompatActivity() {
     companion object {
         const val EXTRA_USERNAME = "extra_username"
         const val STATE_USER = "state_user"
-
-        @StringRes
-        private val TAB_TITLES = intArrayOf(
-            R.string.followers,
-            R.string.following
-        )
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,16 +52,7 @@ class DetailActivity : AppCompatActivity() {
             setUserDetail()
         }
 
-        val bundle = Bundle()
-        bundle.putString(FollowersFragment.ARG_USERNAME, username)
-
-        val sectionPagerAdapter = SectionsPagerAdapter(this@DetailActivity, bundle)
-        val viewPager: ViewPager2 = binding.viewPagerDetail
-        viewPager.adapter = sectionPagerAdapter
-        val tabs: TabLayout = binding.tabsDetail
-        TabLayoutMediator(tabs, viewPager) { tab, position ->
-            tab.text = resources.getString(TAB_TITLES[position])
-        }.attach()
+        initTabLayout()
 
         binding.btnBack.setOnClickListener { this@DetailActivity.finish() }
         binding.btnShare.setOnClickListener { shareData() }
@@ -96,7 +80,8 @@ class DetailActivity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<User>, t: Throwable) {
-                Log.v("DEBUG : ", t.message.toString())
+                Toast.makeText(this@DetailActivity, "Can't load user data", Toast.LENGTH_SHORT)
+                    .show()
             }
         })
     }
@@ -120,6 +105,22 @@ class DetailActivity : AppCompatActivity() {
                 .placeholder(R.color.colorPrimary)
                 .into(binding.ivAvatar)
         }
+    }
+
+    private fun initTabLayout() {
+        val bundle = Bundle()
+        bundle.putString(FollowersFragment.ARG_USERNAME, username)
+
+        val followersFragment = FollowersFragment()
+        val followingFragment = FollowingFragment()
+        followersFragment.arguments = bundle
+        followingFragment.arguments = bundle
+
+        val viewPager: WrapContentViewPager = binding.viewPagerDetail
+        viewPager.adapter =
+            PagerAdapter(supportFragmentManager, listOf(followersFragment, followingFragment))
+        val tabs: TabLayout = binding.tabsDetail
+        tabs.setupWithViewPager(viewPager)
     }
 
     private fun shareData() {
