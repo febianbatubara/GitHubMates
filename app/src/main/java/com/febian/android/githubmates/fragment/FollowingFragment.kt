@@ -5,20 +5,22 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.febian.android.githubmates.activity.Application
 import com.febian.android.githubmates.activity.DetailActivity
 import com.febian.android.githubmates.adapter.ListUserAdapter
+import com.febian.android.githubmates.api.RetrofitService
 import com.febian.android.githubmates.databinding.FragmentFollowingBinding
 import com.febian.android.githubmates.model.User
-import com.febian.android.githubmates.viewmodel.FollowingViewModel
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class FollowingFragment : Fragment() {
 
     private lateinit var binding: FragmentFollowingBinding
-    private lateinit var followingViewModel: FollowingViewModel
     private val listFollowingAdapter by lazy { context?.let { ListUserAdapter(it) } }
     private lateinit var username: String
 
@@ -46,9 +48,28 @@ class FollowingFragment : Fragment() {
 
         showLoading(true)
         setupRecyclerView()
-        followingViewModel = ViewModelProvider(this@FollowingFragment).get(FollowingViewModel::class.java)
-        followingViewModel.getFollowing(username)
-            ?.observe(viewLifecycleOwner, getListFollowingObserver)
+        getFollowingApiCall(username)
+    }
+
+    private fun getFollowingApiCall(username: String) {
+        val call = RetrofitService.apiInterface.getFollowingList(username)
+
+        call.enqueue(object : Callback<List<User>> {
+            override fun onResponse(
+                call: Call<List<User>>,
+                response: Response<List<User>>
+            ) {
+                if (response.isSuccessful) {
+                    response.body()?.let { listFollowingAdapter?.setData(it) }
+                    showNotFound(response.body().isNullOrEmpty())
+                    showLoading(false)
+                }
+            }
+
+            override fun onFailure(call: Call<List<User>>, t: Throwable) {
+                Toast.makeText(Application.appContext, t.message, Toast.LENGTH_LONG).show()
+            }
+        })
     }
 
     private fun setupRecyclerView() {
@@ -65,13 +86,6 @@ class FollowingFragment : Fragment() {
             }
         })
     }
-
-    private val getListFollowingObserver: Observer<List<User>> =
-        Observer { users ->
-            users?.let { listFollowingAdapter?.setData(it) }
-            showNotFound(users.isNullOrEmpty())
-            showLoading(false)
-        }
 
     private fun showLoading(state: Boolean) {
         if (state) {
