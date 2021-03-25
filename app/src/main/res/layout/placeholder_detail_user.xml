@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp">
+
+    <View
+        android:id="@+id/view_avatar"
+        android:layout_width="@dimen/dimen_110dp"
+        android:layout_height="@dimen/dimen_110dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/dimen_44dp"
+        android:background="@drawable/bg_grey_round" />
+
+    <View
+        android:id="@+id/view_full_name"
+        android:layout_width="@dimen/dimen_200dp"
+        android:layout_height="@dimen/dimen_20dp"
+        android:layout_below="@id/view_avatar"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="@dimen/dimen_18dp"
+        android:background="@drawable/bg_grey_rounded" />
+
+    <View
+        android:id="@+id/view_username"
+        android:layout_width="@dimen/dimen_160dp"
+        android:layout_height="@dimen/dimen_16dp"
+        android:layout_below="@id/view_full_name"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="@dimen/dimen_8dp"
+        android:background="@drawable/bg_grey_rounded" />
+
+    <View
+        android:id="@+id/view_member"
+        android:layout_width="@dimen/dimen_160dp"
+        android:layout_height="@dimen/dimen_12dp"
+        android:layout_below="@id/view_username"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="74dp"
+        android:layout_marginBottom="@dimen/dimen_74dp"
+        android:background="@drawable/bg_grey_rounded" />
+
+</RelativeLayout>
+
+
+

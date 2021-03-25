@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:shimmer="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".activity.DetailActivity">
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/user_detail_shimmer_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:translationZ="90dp"
+            shimmer:shimmer_duration="1300">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <include layout="@layout/placeholder_detail_user" />
+
+            </LinearLayout>
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
+        <RelativeLayout
+            android:id="@+id/layout_top_section"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimaryDark"
+            android:padding="16dp">
+
+            <ImageButton
+                android:id="@+id/btn_back"
+                style="@style/ImageButtonGeneral"
+                android:layout_alignParentStart="true"
+                android:contentDescription="@string/back_button"
+                android:src="@drawable/ic_baseline_keyboard_backspace_24" />
+
+            <ImageButton
+                android:id="@+id/btn_share"
+                style="@style/ImageButtonGeneral"
+                android:layout_alignParentEnd="true"
+                android:contentDescription="@string/share_button"
+                android:src="@drawable/ic_baseline_share_24" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/iv_avatar"
+                android:layout_width="@dimen/dimen_110dp"
+                android:layout_height="@dimen/dimen_110dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/dimen_44dp"
+                android:src="@color/colorPrimary"
+                app:civ_border_color="@color/white"
+                app:civ_border_width="2dp" />
+
+            <TextView
+                android:id="@+id/tv_full_name"
+                style="@style/TextContent.Bold"
+                android:layout_below="@id/iv_avatar"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="@dimen/dimen_16dp"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_20sp"
+                tools:text="Full Name" />
+
+            <TextView
+                android:id="@+id/tv_username"
+                style="@style/TextContent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_full_name"
+                android:layout_centerInParent="true"
+                android:textColor="@color/white"
+                tools:text="Username" />
+
+            <TextView
+                android:id="@+id/tv_company"
+                style="@style/TextContent.Bold"
+                android:layout_below="@id/tv_username"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="@dimen/dimen_16dp"
+                android:drawablePadding="@dimen/dimen_4dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/white"
+                app:drawableStartCompat="@drawable/ic_baseline_business_24"
+                tools:text="Company" />
+
+            <TextView
+                android:id="@+id/tv_location"
+                style="@style/TextContent.Bold"
+                android:layout_below="@id/tv_company"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="@dimen/dimen_4dp"
+                android:drawablePadding="@dimen/dimen_4dp"
+                android:textColor="@color/white"
+                app:drawableStartCompat="@drawable/ic_baseline_location_on_24"
+                tools:text="Location" />
+
+            <TextView
+                android:id="@+id/tv_created_date"
+                style="@style/TextContent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_location"
+                android:layout_centerInParent="true"
+                android:layout_marginBottom="@dimen/dimen_32dp"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                tools:text="Member since" />
+
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/btn_web_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dimen_44dp"
+            android:layout_below="@id/layout_top_section"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="-22dp"
+            android:background="@drawable/bg_green_clickable"
+            android:fontFamily="@font/gordita_bold"
+            android:paddingStart="@dimen/dimen_12dp"
+            android:paddingEnd="@dimen/dimen_12dp"
+            android:text="@string/open_web_profile"
+            android:textAllCaps="false"
+            android:textColor="@color/white" />
+
+        <TableLayout
+            android:id="@+id/layout_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/btn_web_profile"
+            android:layout_marginStart="@dimen/dimen_4dp"
+            android:layout_marginTop="@dimen/dimen_16dp"
+            android:layout_marginEnd="@dimen/dimen_4dp"
+            android:layout_marginBottom="@dimen/dimen_8dp"
+            android:padding="@dimen/dimen_16dp">
+
+            <TableRow android:weightSum="3">
+
+                <TextView
+                    android:id="@+id/tv_repo_count"
+                    style="@style/TextContent.Bold.Dark"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textSize="@dimen/text_18sp"
+                    tools:text="@string/repositories" />
+
+                <TextView
+                    android:id="@+id/tv_followers_count"
+                    style="@style/TextContent.Bold.Dark"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textSize="@dimen/text_18sp"
+                    tools:text="@string/followers" />
+
+                <TextView
+                    android:id="@+id/tv_following_count"
+                    style="@style/TextContent.Bold.Dark"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textSize="@dimen/text_18sp"
+                    tools:text="@string/following" />
+            </TableRow>
+
+            <TableRow android:weightSum="3">
+
+                <TextView
+                    style="@style/TextContent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/repositories" />
+
+                <TextView
+                    style="@style/TextContent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/followers" />
+
+                <TextView
+                    style="@style/TextContent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/following" />
+            </TableRow>
+
+        </TableLayout>
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabs_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/layout_info"
+            android:layout_marginStart="@dimen/dimen_16dp"
+            android:layout_marginEnd="@dimen/dimen_16dp"
+            app:tabIndicatorFullWidth="false"
+            app:tabTextAppearance="@style/TabTitleText" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/tabs_detail"
+            android:layout_marginStart="@dimen/dimen_32dp"
+            android:layout_marginEnd="@dimen/dimen_32dp"
+            android:background="@color/lightGrey" />
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/view_pager_detail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/tabs_detail"
+            android:layout_marginStart="@dimen/dimen_16dp"
+            android:layout_marginTop="@dimen/dimen_4dp"
+            android:layout_marginEnd="@dimen/dimen_16dp" />
+
+    </RelativeLayout>
+
+</androidx.core.widget.NestedScrollView>

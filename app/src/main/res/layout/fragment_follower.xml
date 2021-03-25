@@ -1,0 +1,43 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:shimmer="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context="com.febian.android.githubmates.fragment.FollowersFragment">
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/list_user_shimmer_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        shimmer:shimmer_duration="1300">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <include layout="@layout/placeholder_list_user" />
+
+        </LinearLayout>
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_followers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:nestedScrollingEnabled="false"
+        tools:listitem="@layout/item_list_users" />
+
+    <TextView
+        android:id="@+id/tv_no_followers"
+        style="@style/TextContent.Bold"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/dimen_32dp"
+        android:text="@string/no_followers"
+        android:textSize="@dimen/text_18sp"
+        android:translationZ="90dp"
+        android:visibility="gone" />
+
+</FrameLayout>

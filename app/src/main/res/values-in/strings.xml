@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">GitHub Mates</string>
+    <string name="repositories">Repositori</string>
+    <string name="followers">Pengikut</string>
+    <string name="following">Diikuti</string>
+    <string name="back_button">Tombol Kembail</string>
+    <string name="share_button">Tombol Bagikan</string>
+    <string name="search">Cari username</string>
+    <string name="discover_github_mates">Discover GitHub Mates</string>
+    <string name="language_settings">Setelan Bahasa</string>
+    <string name="reminder_settings">Setelan Pengingat</string>
+    <string name="username">\@%1$s</string>
+    <string name="search_icon">Icon cari</string>
+    <string name="clear_search_button">Tombol clear</string>
+    <string name="member_since">Anggota sejak %1$s</string>
+    <string name="open_web_profile">Buka profil web</string>
+    <string name="username_not_found">Username tidak ditemukan</string>
+    <string name="no_followers">Tidak ada pengikut</string>
+    <string name="no_user_followed">Tidak ada yang diikuti</string>
+</resources>

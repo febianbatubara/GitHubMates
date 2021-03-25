@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">GitHub Mates</string>
+    <string name="repositories">Repositories</string>
+    <string name="followers">Followers</string>
+    <string name="following">Following</string>
+    <string name="back_button">Back Button</string>
+    <string name="share_button">Share Button</string>
+    <string name="search">Search username</string>
+    <string name="discover_github_mates">Discover GitHub Mates</string>
+    <string name="language_settings">Language Settings</string>
+    <string name="reminder_settings">Reminder Settings</string>
+    <string name="username">\@%1$s</string>
+    <string name="search_icon">Search Icon</string>
+    <string name="clear_search_button">Clear Search Button</string>
+    <string name="member_since">Member since %1$s</string>
+    <string name="open_web_profile">Open web profile</string>
+    <string name="username_not_found">Username not found</string>
+    <string name="no_followers">No Followers</string>
+    <string name="no_user_followed">No user followed</string>
+</resources>
