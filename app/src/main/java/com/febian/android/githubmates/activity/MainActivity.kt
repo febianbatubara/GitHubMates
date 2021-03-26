@@ -72,6 +72,9 @@ class MainActivity : AppCompatActivity() {
         binding.btnSetting.setOnClickListener {
             showPopUpMenu()
         }
+        binding.btnBookmarkFavorite.setOnClickListener {
+            startActivity(Intent(this, FavoriteActivity::class.java))
+        }
 
         val closeButtonId: Int = binding.edtSearch.context.resources.getIdentifier(
             "android:id/search_close_btn",
