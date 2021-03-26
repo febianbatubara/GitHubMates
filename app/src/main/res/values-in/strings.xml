@@ -10,8 +10,6 @@
     <string name="language_settings">Setelan Bahasa</string>
     <string name="reminder_settings">Setelan Pengingat</string>
     <string name="username">\@%1$s</string>
-    <string name="search_icon">Icon cari</string>
-    <string name="clear_search_button">Tombol clear</string>
     <string name="member_since">Anggota sejak %1$s</string>
     <string name="open_web_profile">Buka profil web</string>
     <string name="username_not_found">Username tidak ditemukan</string>

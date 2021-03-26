@@ -7,8 +7,6 @@
     <dimen name="dimen_16dp">16dp</dimen>
     <dimen name="dimen_18dp">18dp</dimen>
     <dimen name="dimen_20dp">20dp</dimen>
-    <dimen name="dimen_22dp">22dp</dimen>
-    <dimen name="dimen_24dp">24dp</dimen>
     <dimen name="dimen_32dp">32dp</dimen>
     <dimen name="dimen_44dp">44dp</dimen>
     <dimen name="dimen_55dp">55dp</dimen>

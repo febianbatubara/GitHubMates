@@ -36,15 +36,11 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setupRecyclerView()
         showLoading(true)
+        setupRecyclerView()
 
         userViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
         userViewModel.getUsers()?.observe(this, getListUserObserver)
-
-        binding.btnSetting.setOnClickListener {
-            showPopUpMenu()
-        }
 
         binding.edtSearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             private val coroutineScope: CoroutineScope = CoroutineScope(Dispatchers.Main)
@@ -73,13 +69,17 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
+        binding.btnSetting.setOnClickListener {
+            showPopUpMenu()
+        }
+
         val closeButtonId: Int = binding.edtSearch.context.resources.getIdentifier(
             "android:id/search_close_btn",
             null,
             null
         )
-        val closeButton = binding.edtSearch.findViewById(closeButtonId) as ImageView
-        closeButton.setOnClickListener {
+        val closeSearchButton = binding.edtSearch.findViewById(closeButtonId) as ImageView
+        closeSearchButton.setOnClickListener {
             binding.edtSearch.setQuery("", false)
             binding.edtSearch.clearFocus()
         }

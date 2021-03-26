@@ -10,8 +10,6 @@
     <string name="language_settings">Language Settings</string>
     <string name="reminder_settings">Reminder Settings</string>
     <string name="username">\@%1$s</string>
-    <string name="search_icon">Search Icon</string>
-    <string name="clear_search_button">Clear Search Button</string>
     <string name="member_since">Member since %1$s</string>
     <string name="open_web_profile">Open web profile</string>
     <string name="username_not_found">Username not found</string>
