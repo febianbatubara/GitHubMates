@@ -1,5 +1,6 @@
 package com.febian.android.githubmates.database
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Query
 import com.febian.android.githubmates.model.User
@@ -8,9 +9,9 @@ import com.febian.android.githubmates.model.User
 interface FavoriteUserDao {
 
     @Query("SELECT * FROM user")
-    fun getFavoriteUsers(): List<User>
+    fun getFavoriteUsers(): LiveData<List<User>>
 
     @Query("SELECT * FROM user WHERE username=(:username)")
-    fun getFavoriteUser(username: String): User
+    fun getFavoriteUser(username: String): LiveData<User?>
 
 }

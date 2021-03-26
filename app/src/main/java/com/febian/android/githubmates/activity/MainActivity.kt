@@ -21,6 +21,7 @@ import com.febian.android.githubmates.adapter.ListUserAdapter
 import com.febian.android.githubmates.databinding.ActivityMainBinding
 import com.febian.android.githubmates.model.User
 import com.febian.android.githubmates.model.UserResponse
+import com.febian.android.githubmates.repository.FavoriteUserRepository
 import com.febian.android.githubmates.viewmodel.UserViewModel
 import kotlinx.coroutines.*
 
@@ -171,6 +172,7 @@ internal class Application : Application() {
     override fun onCreate() {
         super.onCreate()
         context = applicationContext
+        FavoriteUserRepository.initialize(this)
     }
 
     companion object {
