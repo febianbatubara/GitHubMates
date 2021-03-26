@@ -35,7 +35,7 @@ class FavoriteUserRepository private constructor(context: Context) {
 
     fun getFavoriteUsers() = favoriteUserDao.getFavoriteUsers()
 
-    fun getFavoriteUser(username: String) = favoriteUserDao.getFavoriteUser(username)
+    fun checkFavoriteUser(username: String) = favoriteUserDao.checkFavoriteUser(username)
 
     fun addToFavorite(user: User) = favoriteUserDao.addToFavorite(user)
 

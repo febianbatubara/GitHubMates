@@ -66,20 +66,46 @@ class DetailActivity : AppCompatActivity() {
             intent.data = Uri.parse(user.profileUrl)
             startActivity(intent)
         }
+
+        GlobalScope.launch {
+            val dispatcher = this.coroutineContext
+            CoroutineScope(dispatcher).launch {
+                if (username?.let { favoriteUserRepository.checkFavoriteUser(it) } == true) {
+                    showAddFavoriteButton(false)
+                }
+            }
+        }
+
         binding.btnBookmarkFavorite.setOnClickListener {
             GlobalScope.launch {
                 val dispatcher = this.coroutineContext
                 CoroutineScope(dispatcher).launch {
                     favoriteUserRepository.addToFavorite(user)
-
-                    Toast.makeText(
-                        this@DetailActivity,
-                        getString(R.string.user_added_to_favorite),
-                        Toast.LENGTH_SHORT
-                    ).show()
                 }
             }
+            showAddFavoriteButton(false)
+            Toast.makeText(
+                this@DetailActivity,
+                getString(R.string.user_added_to_favorite),
+                Toast.LENGTH_SHORT
+            ).show()
         }
+
+        binding.btnRemoveBookmarkFavorite.setOnClickListener {
+            GlobalScope.launch {
+                val dispatcher = this.coroutineContext
+                CoroutineScope(dispatcher).launch {
+                    favoriteUserRepository.removeFromFavorite(user)
+                }
+            }
+            showAddFavoriteButton(true)
+            Toast.makeText(
+                this@DetailActivity,
+                getString(R.string.user_removed_from_favorite),
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+
     }
 
     private fun getUserDetail() {
@@ -183,6 +209,16 @@ class DetailActivity : AppCompatActivity() {
             binding.userDetailShimmerContainer.visibility = View.VISIBLE
         } else {
             binding.userDetailShimmerContainer.visibility = View.GONE
+        }
+    }
+
+    private fun showAddFavoriteButton(state: Boolean) {
+        if (state) {
+            binding.btnBookmarkFavorite.visibility = View.VISIBLE
+            binding.btnRemoveBookmarkFavorite.visibility = View.GONE
+        } else {
+            binding.btnBookmarkFavorite.visibility = View.GONE
+            binding.btnRemoveBookmarkFavorite.visibility = View.VISIBLE
         }
     }
 

@@ -13,8 +13,8 @@ interface FavoriteUserDao {
     @Query("SELECT * FROM user")
     fun getFavoriteUsers(): LiveData<List<User>>
 
-    @Query("SELECT * FROM user WHERE username=(:username)")
-    fun getFavoriteUser(username: String): LiveData<User?>
+    @Query("SELECT EXISTS(SELECT * FROM user WHERE username=(:username))")
+    fun checkFavoriteUser(username: String): Boolean
 
     @Insert
     fun addToFavorite(user: User)

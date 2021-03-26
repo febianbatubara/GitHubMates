@@ -16,8 +16,10 @@
     <string name="no_followers">Tidak ada pengikut</string>
     <string name="no_user_followed">Tidak ada yang diikuti</string>
     <string name="press_again_to_exit">Tekan sekali lagi untuk keluar</string>
-    <string name="add_to_favorite">Tambahkan ke favorit</string>
+    <string name="favorite_button">Tombol favorit</string>
+    <string name="remove_favorite_button">Tombol hapus favorit</string>
     <string name="favorite_users">Pengguna Favorit</string>
     <string name="there_are_no_favorite_users_yet">Belum ada pengguna favorit</string>
     <string name="user_added_to_favorite">User ditambahkan ke favorit</string>
+    <string name="user_removed_from_favorite">User dihapus dari favorit</string>
 </resources>
