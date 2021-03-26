@@ -3,6 +3,7 @@ package com.febian.android.githubmates.repository
 import android.content.Context
 import androidx.room.Room
 import com.febian.android.githubmates.database.FavoriteUserDatabase
+import com.febian.android.githubmates.model.User
 
 private const val DATABASE_NAME = "favorite_user_database"
 
@@ -35,5 +36,7 @@ class FavoriteUserRepository private constructor(context: Context) {
     fun getFavoriteUsers() = favoriteUserDao.getFavoriteUsers()
 
     fun getFavoriteUser(username: String) = favoriteUserDao.getFavoriteUser(username)
+
+    fun addToFavorite(user: User) = favoriteUserDao.addToFavorite(user)
 
 }

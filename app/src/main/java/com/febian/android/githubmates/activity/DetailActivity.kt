@@ -14,8 +14,12 @@ import com.febian.android.githubmates.databinding.ActivityDetailBinding
 import com.febian.android.githubmates.fragment.FollowersFragment
 import com.febian.android.githubmates.fragment.FollowingFragment
 import com.febian.android.githubmates.model.User
+import com.febian.android.githubmates.repository.FavoriteUserRepository
 import com.febian.android.githubmates.utils.WrapContentViewPager
 import com.google.android.material.tabs.TabLayout
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -29,6 +33,7 @@ class DetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailBinding
     private lateinit var user: User
     private var username: String? = null
+    private val favoriteUserRepository = FavoriteUserRepository.get()
 
     companion object {
         const val EXTRA_USERNAME = "extra_username"
@@ -60,6 +65,20 @@ class DetailActivity : AppCompatActivity() {
             val intent = Intent(Intent.ACTION_VIEW)
             intent.data = Uri.parse(user.profileUrl)
             startActivity(intent)
+        }
+        binding.btnBookmarkFavorite.setOnClickListener {
+            GlobalScope.launch {
+                val dispatcher = this.coroutineContext
+                CoroutineScope(dispatcher).launch {
+                    favoriteUserRepository.addToFavorite(user)
+
+                    Toast.makeText(
+                        this@DetailActivity,
+                        getString(R.string.user_added_to_favorite),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
         }
     }
 
@@ -142,7 +161,7 @@ class DetailActivity : AppCompatActivity() {
         startActivity(Intent.createChooser(shareIntent, "Share user information to.."))
     }
 
-    private fun countConverter(numValue: Int?): String? {
+    private fun countConverter(numValue: Int?): String {
         var finalValue: String = numValue.toString()
         if (numValue != null) {
             val suffix = charArrayOf(' ', 'k', 'M', 'B')
