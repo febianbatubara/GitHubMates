@@ -3,15 +3,22 @@ package com.febian.android.githubmates.activity
 import android.content.Intent
 import android.os.Bundle
 import android.provider.Settings
+import android.view.View
 import android.widget.PopupMenu
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.febian.android.githubmates.R
 import com.febian.android.githubmates.adapter.ListUserAdapter
 import com.febian.android.githubmates.databinding.ActivityFavoriteBinding
+import com.febian.android.githubmates.model.User
+import com.febian.android.githubmates.viewmodel.FavoriteUserViewModel
 
 class FavoriteActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityFavoriteBinding
+    private lateinit var favoriteUserViewModel: FavoriteUserViewModel
     private val listUserAdapter by lazy { ListUserAdapter(this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,9 +26,35 @@ class FavoriteActivity : AppCompatActivity() {
         binding = ActivityFavoriteBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        showLoading(true)
+        setupRecyclerView()
+
+        favoriteUserViewModel = ViewModelProvider(this).get(FavoriteUserViewModel::class.java)
+        favoriteUserViewModel.favoriteUsers.observe(this, getListFavoriteUserObserver)
+
         binding.btnSetting.setOnClickListener { showPopUpMenu() }
         binding.btnBack.setOnClickListener { this@FavoriteActivity.finish() }
+    }
 
+    private val getListFavoriteUserObserver: Observer<List<User>> =
+        Observer { users ->
+            users?.let { listUserAdapter.setData(it) }
+            showNotFound(users.isNullOrEmpty())
+            showLoading(false)
+        }
+
+    private fun setupRecyclerView() {
+        binding.rvFavoriteUsers.layoutManager = LinearLayoutManager(this)
+        binding.rvFavoriteUsers.adapter = listUserAdapter
+        binding.rvFavoriteUsers.setHasFixedSize(true)
+
+        listUserAdapter.setOnItemClickCallback(object : ListUserAdapter.OnItemClickCallback {
+            override fun onItemClicked(data: User) {
+                val intent = Intent(this@FavoriteActivity, DetailActivity::class.java)
+                intent.putExtra(DetailActivity.EXTRA_USERNAME, data.username)
+                startActivity(intent)
+            }
+        })
     }
 
     private fun showPopUpMenu() {
@@ -40,5 +73,23 @@ class FavoriteActivity : AppCompatActivity() {
             }
         }
         popUp.show()
+    }
+
+    private fun showLoading(state: Boolean) {
+        if (state) {
+            binding.listFavoriteUserShimmerContainer.visibility = View.VISIBLE
+        } else {
+            binding.listFavoriteUserShimmerContainer.visibility = View.GONE
+        }
+    }
+
+    private fun showNotFound(state: Boolean) {
+        if (state) {
+            binding.tvNoFavorite.visibility = View.VISIBLE
+            binding.ivNotFound.visibility = View.VISIBLE
+        } else {
+            binding.tvNoFavorite.visibility = View.GONE
+            binding.ivNotFound.visibility = View.GONE
+        }
     }
 }

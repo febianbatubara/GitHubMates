@@ -13,7 +13,7 @@ data class User(
     @PrimaryKey
     @SerializedName("login")
     @Expose
-    val username: String?,
+    val username: String,
 
     @SerializedName("name")
     @Expose
