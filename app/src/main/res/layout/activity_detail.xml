@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:translationZ="90dp"
+            android:translationZ="@dimen/dimen_4dp"
             shimmer:shimmer_duration="1300">
 
             <LinearLayout
@@ -50,6 +50,15 @@
                 android:layout_alignParentEnd="true"
                 android:contentDescription="@string/share_button"
                 android:src="@drawable/ic_baseline_share_24" />
+
+            <ImageButton
+                android:id="@+id/btn_bookmark_favorite"
+                style="@style/ImageButtonGeneral"
+                android:layout_below="@id/btn_share"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="@dimen/dimen_4dp"
+                android:contentDescription="@string/share_button"
+                android:src="@drawable/ic_baseline_bookmark_border_24" />
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/iv_avatar"

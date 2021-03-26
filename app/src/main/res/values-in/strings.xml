@@ -16,4 +16,5 @@
     <string name="no_followers">Tidak ada pengikut</string>
     <string name="no_user_followed">Tidak ada yang diikuti</string>
     <string name="press_again_to_exit">Tekan sekali lagi untuk keluar</string>
+    <string name="add_to_favorite">Tambahkan ke favorit</string>
 </resources>

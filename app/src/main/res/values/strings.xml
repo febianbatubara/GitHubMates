@@ -16,4 +16,5 @@
     <string name="no_followers">No Followers</string>
     <string name="no_user_followed">No user followed</string>
     <string name="press_again_to_exit">Press again to exit</string>
+    <string name="add_to_favorite">Add to favorite</string>
 </resources>
