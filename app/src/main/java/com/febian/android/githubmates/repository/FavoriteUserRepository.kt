@@ -39,4 +39,6 @@ class FavoriteUserRepository private constructor(context: Context) {
 
     fun addToFavorite(user: User) = favoriteUserDao.addToFavorite(user)
 
+    fun removeFromFavorite(user: User) = favoriteUserDao.deleteFromFavorite(user)
+
 }
