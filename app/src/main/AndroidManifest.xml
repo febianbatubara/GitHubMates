@@ -3,6 +3,7 @@
     package="com.febian.android.githubmates">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
         android:name=".activity.Application"
@@ -24,6 +25,16 @@
         </activity>
         <activity android:name=".activity.DetailActivity" />
         <activity android:name=".activity.MainActivity" />
+
+        <receiver
+            android:name=".utils.ReminderReceiver"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="android.permission.INSTALL_PACKAGES">
+            <intent-filter>
+                <action android:name="com.android.vending.INSTALL_REFERRER" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

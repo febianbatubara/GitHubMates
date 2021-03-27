@@ -26,7 +26,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_setting_title"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:checked="false" />
 
     <TextView
         android:id="@+id/tv_setting_description"
@@ -35,7 +36,6 @@
         android:layout_below="@+id/tv_daily_reminder_title"
         android:layout_marginTop="@dimen/dimen_8dp"
         android:fontFamily="@font/gordita_regular"
-        android:text="@string/reminder_every_09_00_am"
-        android:textColor="@color/colorPrimaryDark" />
+        android:text="@string/reminder_every_09_00_am" />
 
 </RelativeLayout>

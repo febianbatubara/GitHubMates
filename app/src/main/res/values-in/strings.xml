@@ -24,4 +24,7 @@
     <string name="user_removed_from_favorite">User dihapus dari favorit</string>
     <string name="daily_reminder">Pengingat Harian</string>
     <string name="reminder_every_09_00_am">Pengingat setiap pukul 09.00 untuk kembali ke aplikasi</string>
+    <string name="daily_reminder_activated">Pengingat harian diaktifkan</string>
+    <string name="daily_reminder_removed">Pengingat harian dinonaktifkan</string>
+    <string name="find_out_awesome_developers">Temukan developer di GitHub Mates</string>
 </resources>

@@ -24,4 +24,7 @@
     <string name="user_removed_from_favorite">User removed from favorites</string>
     <string name="daily_reminder">Daily Reminder</string>
     <string name="reminder_every_09_00_am">Reminder every 09.00 AM to return to the application</string>
+    <string name="daily_reminder_activated">Daily reminder have been activated</string>
+    <string name="daily_reminder_removed">Daily reminder have been removed</string>
+    <string name="find_out_awesome_developers">Find out awesome developers on GitHubMates</string>
 </resources>

@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.febian.android.githubmates.R
 import com.febian.android.githubmates.adapter.ListUserAdapter
 import com.febian.android.githubmates.databinding.ActivityFavoriteBinding
+import com.febian.android.githubmates.fragment.ReminderSettingFragment
 import com.febian.android.githubmates.model.User
 import com.febian.android.githubmates.viewmodel.FavoriteUserViewModel
 
@@ -67,6 +68,12 @@ class FavoriteActivity : AppCompatActivity() {
                     true
                 }
                 R.id.reminder_settings -> {
+                    val optionDialogFragment = ReminderSettingFragment()
+                    val fragmentManager = supportFragmentManager
+                    optionDialogFragment.show(
+                        fragmentManager,
+                        ReminderSettingFragment::class.java.simpleName
+                    )
                     true
                 }
                 else -> false

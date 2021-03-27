@@ -134,7 +134,6 @@ class MainActivity : AppCompatActivity() {
                         fragmentManager,
                         ReminderSettingFragment::class.java.simpleName
                     )
-
                     true
                 }
                 else -> false
@@ -173,13 +172,6 @@ class MainActivity : AppCompatActivity() {
             doubleBackToExitPressedOnce = false
         }, 2000)
     }
-
-//    internal var optionDialogListener: ReminderSettingFragment.OnOptionDialogListener =
-//        object : ReminderSettingFragment.OnOptionDialogListener {
-//            override fun onOptionChosen(text: String?) {
-//                Toast.makeText(this@MainActivity, text, Toast.LENGTH_SHORT).show()
-//            }
-//        }
 
 }
 

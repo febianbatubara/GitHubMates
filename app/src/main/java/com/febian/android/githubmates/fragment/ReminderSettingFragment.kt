@@ -1,27 +1,24 @@
 package com.febian.android.githubmates.fragment
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
+import com.febian.android.githubmates.R
 import com.febian.android.githubmates.databinding.FragmentReminderSettingBinding
-
-private const val ARG_PARAM1 = "param1"
+import com.febian.android.githubmates.utils.ReminderReceiver
 
 class ReminderSettingFragment : DialogFragment() {
 
     private lateinit var binding: FragmentReminderSettingBinding
-    private var optionDialogListener: OnOptionDialogListener? = null
+    private lateinit var reminderReceiver: ReminderReceiver
 
-    private var param1: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-        }
+    companion object {
+        private const val PREFS_NAME = "reminder_preference"
+        private const val IS_REMINDER_ACTIVATED = "is_reminder_activated"
     }
 
     override fun onCreateView(
@@ -35,26 +32,34 @@ class ReminderSettingFragment : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        reminderReceiver = ReminderReceiver()
+
+        val reminderSharedPreferences: SharedPreferences = activity!!.getSharedPreferences(
+            PREFS_NAME,
+            Context.MODE_PRIVATE
+        )
+
+        binding.switchReminder.isChecked =
+            reminderSharedPreferences.getBoolean(IS_REMINDER_ACTIVATED, false)
+
         binding.switchReminder.setOnClickListener {
+            if (binding.switchReminder.isChecked) {
+                val editor = reminderSharedPreferences.edit()
+                editor.putBoolean(IS_REMINDER_ACTIVATED, true)
+                editor.apply()
+                binding.switchReminder.isChecked = true
 
+                val message = context!!.getString(R.string.find_out_awesome_developers)
+                reminderReceiver.setRepeatingReminder(context!!, "21:48:00", message)
+            } else {
+                val editor = reminderSharedPreferences.edit()
+                editor.putBoolean(IS_REMINDER_ACTIVATED, false)
+                editor.apply()
+                binding.switchReminder.isChecked = false
+
+                reminderReceiver.cancelRepeatingReminder(context!!)
+            }
         }
-    }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-//        if (fragment is DetailCategoryFragment) {
-//            val detailCategoryFragment = fragment
-//            this.optionDialogListener = detailCategoryFragment.optionDialogListener
-//        }
-    }
-
-    override fun onDetach() {
-        super.onDetach()
-        this.optionDialogListener = null
-    }
-
-    interface OnOptionDialogListener {
-        fun onOptionChosen(text: String?)
     }
 
 }
