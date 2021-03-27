@@ -38,7 +38,7 @@ class FollowersFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentFollowerBinding.inflate(inflater, container, false)
         return binding.root
     }

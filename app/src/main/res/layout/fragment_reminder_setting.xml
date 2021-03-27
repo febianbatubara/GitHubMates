@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/dimen_16dp"
+    tools:context=".fragment.ReminderSettingFragment">
+
+    <TextView
+        android:id="@+id/tv_setting_title"
+        style="@style/TextContent.Bold.Dark"
+        android:layout_marginBottom="@dimen/dimen_32dp"
+        android:text="@string/reminder_settings"
+        android:textSize="@dimen/text_20sp" />
+
+    <TextView
+        android:id="@+id/tv_daily_reminder_title"
+        style="@style/TextContent"
+        android:layout_below="@+id/tv_setting_title"
+        android:text="@string/daily_reminder"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="@dimen/text_20sp" />
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/switch_reminder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_setting_title"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:id="@+id/tv_setting_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_daily_reminder_title"
+        android:layout_marginTop="@dimen/dimen_8dp"
+        android:fontFamily="@font/gordita_regular"
+        android:text="@string/reminder_every_09_00_am"
+        android:textColor="@color/colorPrimaryDark" />
+
+</RelativeLayout>
