@@ -3,9 +3,12 @@ package com.febian.android.githubmates.activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.view.Gravity
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.febian.android.githubmates.R
 import com.febian.android.githubmates.adapter.PagerAdapter
@@ -16,6 +19,7 @@ import com.febian.android.githubmates.fragment.FollowingFragment
 import com.febian.android.githubmates.model.User
 import com.febian.android.githubmates.repository.FavoriteUserRepository
 import com.febian.android.githubmates.utils.WrapContentViewPager
+import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.GlobalScope
@@ -88,11 +92,10 @@ class DetailActivity : AppCompatActivity() {
                 getString(R.string.user_added_to_favorite)
             }
 
-            Toast.makeText(
-                this@DetailActivity,
-                textResource,
-                Toast.LENGTH_SHORT
-            ).show()
+            Snackbar.make(binding.layoutInfo, textResource, Snackbar.LENGTH_LONG)
+                .setAction("Close") { }
+                .setActionTextColor(ContextCompat.getColor(this, R.color.colorAccent))
+                .show()
         }
 
     }
