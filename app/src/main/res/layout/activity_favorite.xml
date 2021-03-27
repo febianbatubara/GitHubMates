@@ -42,22 +42,6 @@
             android:contentDescription="@string/share_button"
             android:src="@drawable/ic_baseline_settings_24" />
 
-        <SearchView
-            android:id="@+id/edt_search"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dimen_44dp"
-            android:layout_below="@id/tv_activity_title"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="24dp"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/bg_white_rounded"
-            android:elevation="4dp"
-            android:fontFamily="@font/gordita_regular"
-            android:iconifiedByDefault="false"
-            android:queryBackground="@android:color/transparent"
-            android:queryHint="@string/search" />
-
     </RelativeLayout>
 
     <ImageView

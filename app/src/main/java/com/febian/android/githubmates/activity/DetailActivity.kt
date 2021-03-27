@@ -34,6 +34,7 @@ class DetailActivity : AppCompatActivity() {
     private lateinit var user: User
     private var username: String? = null
     private val favoriteUserRepository = FavoriteUserRepository.get()
+    private var isFavorite: Boolean? = null
 
     companion object {
         const val EXTRA_USERNAME = "extra_username"
@@ -46,8 +47,8 @@ class DetailActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         username = intent.getStringExtra(EXTRA_USERNAME)
-
         showLoading(true)
+        checkIsFavorite()
 
         if (savedInstanceState == null) {
             getUserDetail()
@@ -56,7 +57,6 @@ class DetailActivity : AppCompatActivity() {
             user = stateUser!!
             setUserDetail()
         }
-
         initTabLayout()
 
         binding.btnBack.setOnClickListener { this@DetailActivity.finish() }
@@ -66,42 +66,31 @@ class DetailActivity : AppCompatActivity() {
             intent.data = Uri.parse(user.profileUrl)
             startActivity(intent)
         }
-
-        GlobalScope.launch {
-            val dispatcher = this.coroutineContext
-            CoroutineScope(dispatcher).launch {
-                if (username?.let { favoriteUserRepository.checkFavoriteUser(it) } == true) {
-                    showAddFavoriteButton(false)
-                }
-            }
-        }
-
         binding.btnBookmarkFavorite.setOnClickListener {
             GlobalScope.launch {
                 val dispatcher = this.coroutineContext
                 CoroutineScope(dispatcher).launch {
-                    favoriteUserRepository.addToFavorite(user)
+                    isFavorite = if (isFavorite == true) {
+                        favoriteUserRepository.removeFromFavorite(user)
+                        false
+                    } else {
+                        favoriteUserRepository.addToFavorite(user)
+                        true
+                    }
                 }
             }
-            showAddFavoriteButton(false)
-            Toast.makeText(
-                this@DetailActivity,
-                getString(R.string.user_added_to_favorite),
-                Toast.LENGTH_SHORT
-            ).show()
-        }
 
-        binding.btnRemoveBookmarkFavorite.setOnClickListener {
-            GlobalScope.launch {
-                val dispatcher = this.coroutineContext
-                CoroutineScope(dispatcher).launch {
-                    favoriteUserRepository.removeFromFavorite(user)
-                }
+            val textResource: String = if (isFavorite == true) {
+                showAddFavoriteButton()
+                getString(R.string.user_removed_from_favorite)
+            } else {
+                showRemoveFavoriteButton()
+                getString(R.string.user_added_to_favorite)
             }
-            showAddFavoriteButton(true)
+
             Toast.makeText(
                 this@DetailActivity,
-                getString(R.string.user_removed_from_favorite),
+                textResource,
                 Toast.LENGTH_SHORT
             ).show()
         }
@@ -187,6 +176,18 @@ class DetailActivity : AppCompatActivity() {
         startActivity(Intent.createChooser(shareIntent, "Share user information to.."))
     }
 
+    private fun checkIsFavorite() {
+        GlobalScope.launch {
+            val dispatcher = this.coroutineContext
+            CoroutineScope(dispatcher).launch {
+                if (username?.let { favoriteUserRepository.checkFavoriteUser(it) } == true) {
+                    showRemoveFavoriteButton()
+                    isFavorite = true
+                }
+            }
+        }
+    }
+
     private fun countConverter(numValue: Int?): String {
         var finalValue: String = numValue.toString()
         if (numValue != null) {
@@ -212,14 +213,12 @@ class DetailActivity : AppCompatActivity() {
         }
     }
 
-    private fun showAddFavoriteButton(state: Boolean) {
-        if (state) {
-            binding.btnBookmarkFavorite.visibility = View.VISIBLE
-            binding.btnRemoveBookmarkFavorite.visibility = View.GONE
-        } else {
-            binding.btnBookmarkFavorite.visibility = View.GONE
-            binding.btnRemoveBookmarkFavorite.visibility = View.VISIBLE
-        }
+    private fun showAddFavoriteButton() {
+        binding.btnBookmarkFavorite.setImageResource(R.drawable.ic_baseline_bookmark_border_24)
+    }
+
+    private fun showRemoveFavoriteButton() {
+        binding.btnBookmarkFavorite.setImageResource(R.drawable.ic_baseline_bookmark_24)
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
