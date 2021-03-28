@@ -50,7 +50,7 @@ class ReminderSettingFragment : DialogFragment() {
                 binding.switchReminder.isChecked = true
 
                 val message = context!!.getString(R.string.find_out_awesome_developers)
-                reminderReceiver.setRepeatingReminder(context!!, "21:48:00", message)
+                reminderReceiver.setRepeatingReminder(context!!, message)
             } else {
                 val editor = reminderSharedPreferences.edit()
                 editor.putBoolean(IS_REMINDER_ACTIVATED, false)
