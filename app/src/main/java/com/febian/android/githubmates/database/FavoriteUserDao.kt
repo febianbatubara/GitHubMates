@@ -1,8 +1,7 @@
 package com.febian.android.githubmates.database
 
-import androidx.lifecycle.LiveData
+import android.database.Cursor
 import androidx.room.Dao
-import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import com.febian.android.githubmates.model.User
@@ -11,15 +10,18 @@ import com.febian.android.githubmates.model.User
 interface FavoriteUserDao {
 
     @Query("SELECT * FROM user")
-    fun getFavoriteUsers(): LiveData<List<User>>
+    fun getFavoriteUsers(): Cursor
 
-    @Query("SELECT EXISTS(SELECT * FROM user WHERE username=(:username))")
-    fun checkFavoriteUser(username: String): Boolean
+    @Query("SELECT * FROM user WHERE id=(:id)")
+    fun getFavoriteUserById(id: Int): Cursor?
+
+    @Query("SELECT EXISTS(SELECT * FROM user WHERE id=(:id))")
+    fun checkFavoriteUser(id: Int): Boolean
 
     @Insert
-    fun addToFavorite(user: User)
+    fun addToFavorite(user: User): Long
 
-    @Delete
-    fun deleteFromFavorite(user: User)
+    @Query("DELETE FROM user WHERE id = :id")
+    fun deleteFromFavorite(id: Int): Int
 
 }

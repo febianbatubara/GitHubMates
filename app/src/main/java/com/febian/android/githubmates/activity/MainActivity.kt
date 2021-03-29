@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.provider.Settings
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.PopupMenu
@@ -42,7 +43,7 @@ class MainActivity : AppCompatActivity() {
         setupRecyclerView()
 
         userViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
-        userViewModel.getUsers()?.observe(this, getListUserObserver)
+        userViewModel.getUsers()?.observe(this,  getListUserObserver)
 
         binding.edtSearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             private val coroutineScope: CoroutineScope = CoroutineScope(Dispatchers.Main)
