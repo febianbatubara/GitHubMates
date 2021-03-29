@@ -14,9 +14,6 @@ class FavoriteUserViewModel : ViewModel() {
     fun checkFavoriteUser(id: Int, context: Context) =
         favoriteUserRepository.checkFavoriteUser(id, context)
 
-    fun checkFavoriteUser(id: Int) =
-        favoriteUserRepository.checkFavoriteUser(id)
-
     fun addToFavoriteUsers(user: User, context: Context) =
         favoriteUserRepository.addToFavorite(user, context)
 

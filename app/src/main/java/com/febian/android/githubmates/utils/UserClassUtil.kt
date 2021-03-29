@@ -8,19 +8,18 @@ import java.util.*
 object UserClassUtil {
 
     private const val USER_ID = "id"
-    private const val USER_USERNAME = "login"
+    private const val USER_USERNAME = "username"
     private const val USER_NAME = "name"
-    private const val USER_AVATAR_URL = "avatar_url"
+    private const val USER_AVATAR_URL = "avatarUrl"
     private const val USER_COMPANY = "company"
     private const val USER_LOCATION = "location"
-    private const val USER_REPOSITORIES = "public_repos"
+    private const val USER_REPOSITORIES = "repositoryCount"
     private const val USER_FOLLOWERS = "followers"
     private const val USER_FOLLOWING = "following"
-    private const val USER_PROFILE_URL = "html_url"
-    private const val USER_FOLLOWERS_URL = "followers_url"
-    private const val USER_FOLLOWING_URL = "following_url"
-    private const val USER_CREATED_DATE = "created_at"
-
+    private const val USER_PROFILE_URL = "profileUrl"
+    private const val USER_FOLLOWERS_URL = "followersUrl"
+    private const val USER_FOLLOWING_URL = "followingUrl"
+    private const val USER_CREATED_DATE = "createdDate"
 
     fun Cursor.toUser(): User = User(
         id = getInt(getColumnIndexOrThrow(USER_ID)),
@@ -82,7 +81,7 @@ object UserClassUtil {
                 put(USER_FOLLOWING, following)
                 put(USER_PROFILE_URL, profileUrl)
                 put(USER_FOLLOWERS_URL, followersUrl)
-                put(USER_FOLLOWING, followingUrl)
+                put(USER_FOLLOWING_URL, followingUrl)
                 put(USER_CREATED_DATE, createdDate)
             }
         }
