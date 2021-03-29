@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">GitHub Mates</string>
+    <string name="repositories">Repositori</string>
+    <string name="followers">Pengikut</string>
+    <string name="following">Diikuti</string>
+    <string name="back_button">Tombol Kembail</string>
+    <string name="share_button">Tombol Bagikan</string>
+    <string name="search">Cari username</string>
+    <string name="discover_github_mates">Discover GitHub Mates</string>
+    <string name="language_settings">Setelan Bahasa</string>
+    <string name="reminder_settings">Setelan Pengingat</string>
+    <string name="username">\@%1$s</string>
+    <string name="member_since">Anggota sejak %1$s</string>
+    <string name="open_web_profile">Buka profil web</string>
+    <string name="username_not_found">Username tidak ditemukan</string>
+    <string name="no_followers">Tidak ada pengikut</string>
+    <string name="no_user_followed">Tidak ada yang diikuti</string>
+    <string name="press_again_to_exit">Tekan sekali lagi untuk keluar</string>
+    <string name="favorite_button">Tombol favorit</string>
+    <string name="remove_favorite_button">Tombol hapus favorit</string>
+    <string name="favorite_users">Pengguna Favorit</string>
+    <string name="there_are_no_favorite_users_yet">Belum ada pengguna favorit</string>
+    <string name="user_added_to_favorite">User ditambahkan ke favorit</string>
+    <string name="user_removed_from_favorite">User dihapus dari favorit</string>
+    <string name="daily_reminder">Pengingat Harian</string>
+    <string name="reminder_every_09_00_am">Pengingat setiap pukul 09.00 untuk kembali ke aplikasi</string>
+    <string name="daily_reminder_activated">Pengingat harian diaktifkan</string>
+    <string name="daily_reminder_removed">Pengingat harian dinonaktifkan</string>
+    <string name="find_out_awesome_developers">Temukan developer di GitHub Mates</string>
+</resources>
