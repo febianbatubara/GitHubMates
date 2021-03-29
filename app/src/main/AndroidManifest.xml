@@ -6,6 +6,13 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
+    <permission
+        android:name="com.febian.android.githubmates.READ_DATABASE"
+        android:protectionLevel="normal" />
+    <permission
+        android:name="com.febian.android.githubmates.WRITE_DATABASE"
+        android:protectionLevel="normal" />
+
     <application
         android:name=".activity.Application"
         android:allowBackup="true"
@@ -16,6 +23,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
+
+        <provider
+            android:name=".provider.GitHubMatesProvider"
+            android:authorities="com.febian.android.githubmates"
+            android:enabled="true"
+            android:exported="true"
+            android:readPermission="com.febian.android.githubmates.READ_DATABASE"
+            android:writePermission="com.febian.android.githubmates.WRITE_DATABASE" />
+
         <activity android:name=".activity.FavoriteActivity" />
         <activity android:name=".activity.SplashActivity">
             <intent-filter>
