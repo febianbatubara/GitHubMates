@@ -7,11 +7,11 @@ import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
-
 @Entity
 @Parcelize
 data class User(
     @PrimaryKey(autoGenerate = false)
+    @SerializedName("id")
     val id: Int,
 
     @SerializedName("login")

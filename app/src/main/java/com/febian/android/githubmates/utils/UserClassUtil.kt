@@ -22,7 +22,7 @@ object UserClassUtil {
     private const val USER_CREATED_DATE = "created_at"
 
 
-    private fun Cursor.toUser(): User = User(
+    fun Cursor.toUser(): User = User(
         id = getInt(getColumnIndexOrThrow(USER_ID)),
         username = getString(getColumnIndexOrThrow(USER_USERNAME)),
         name = getString(getColumnIndexOrThrow(USER_NAME)),
