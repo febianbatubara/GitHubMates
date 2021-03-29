@@ -24,6 +24,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
 
+        <receiver android:name=".widget.FavoriteUserWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/favorite_user_widget_info" />
+        </receiver>
+
         <provider
             android:name=".provider.GitHubMatesProvider"
             android:authorities="com.febian.android.githubmates"
@@ -51,6 +61,11 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
+
+        <service
+            android:name="com.febian.android.githubmates.widget.StackWidgetService"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
+
     </application>
 
 </manifest>

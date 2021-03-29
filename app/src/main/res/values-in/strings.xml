@@ -27,4 +27,5 @@
     <string name="daily_reminder_activated">Pengingat harian diaktifkan</string>
     <string name="daily_reminder_removed">Pengingat harian dinonaktifkan</string>
     <string name="find_out_awesome_developers">Temukan developer di GitHub Mates</string>
+    <string name="favorite_github_users">User GitHub Favorit</string>
 </resources>

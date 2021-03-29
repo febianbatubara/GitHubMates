@@ -3,8 +3,8 @@
     xmlns:shimmer="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/colorPrimary"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
     tools:context=".activity.MainActivity">
 
     <RelativeLayout
@@ -27,12 +27,13 @@
         <TextView
             android:id="@+id/tv_activity_title"
             style="@style/TextContent.Bold"
-            android:layout_margin="@dimen/dimen_16dp"
+            android:layout_marginStart="@dimen/dimen_16dp"
+            android:layout_marginTop="@dimen/dimen_18dp"
             android:layout_toEndOf="@id/btn_back"
             android:gravity="start"
             android:text="@string/favorite_users"
             android:textColor="@color/white"
-            android:textSize="@dimen/text_18sp" />
+            android:textSize="16sp" />
 
         <ImageButton
             android:id="@+id/btn_setting"
@@ -61,6 +62,7 @@
         android:layout_below="@id/iv_not_found"
         android:layout_centerHorizontal="true"
         android:text="@string/there_are_no_favorite_users_yet"
+        android:textColor="@color/white"
         android:textSize="@dimen/text_18sp"
         android:translationZ="90dp"
         android:visibility="gone" />
