@@ -31,7 +31,8 @@ class FavoriteActivity : AppCompatActivity() {
         setupRecyclerView()
 
         favoriteUserViewModel = ViewModelProvider(this).get(FavoriteUserViewModel::class.java)
-        favoriteUserViewModel.favoriteUsers.observe(this, getListFavoriteUserObserver)
+        favoriteUserViewModel.getFavoriteUsers(this@FavoriteActivity)
+            .observe(this@FavoriteActivity, getListFavoriteUserObserver)
 
         binding.btnSetting.setOnClickListener { showPopUpMenu() }
         binding.btnBack.setOnClickListener { this@FavoriteActivity.finish() }
@@ -99,4 +100,11 @@ class FavoriteActivity : AppCompatActivity() {
             binding.ivNotFound.visibility = View.GONE
         }
     }
+
+    override fun onResume() {
+        super.onResume()
+        favoriteUserViewModel.getFavoriteUsers(this@FavoriteActivity)
+            .observe(this@FavoriteActivity, getListFavoriteUserObserver)
+    }
+
 }

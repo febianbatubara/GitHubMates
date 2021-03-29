@@ -1,0 +1,43 @@
+<resources>
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorControlHighlight">@color/white</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="TextContent">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/gordita_regular</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="TextContent.Bold">
+        <item name="android:fontFamily">@font/gordita_bold</item>
+    </style>
+
+    <style name="TextContent.Bold.Dark">
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+    </style>
+
+    <style name="ImageButtonGeneral">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">8dp</item>
+        <item name="android:background">?android:selectableItemBackgroundBorderless</item>
+    </style>
+
+    <style name="TabTitleText" parent="@android:style/TextAppearance.Widget.TabWidget">
+        <item name="android:textColor">@drawable/custom_tab_indicator_text</item>
+        <item name="fontFamily">@font/gordita_bold</item>
+        <item name="android:textSize">@dimen/text_18sp</item>
+    </style>
+
+</resources>

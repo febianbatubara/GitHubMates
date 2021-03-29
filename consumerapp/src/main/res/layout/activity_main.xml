@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:shimmer="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/colorPrimary"
+    android:layout_height="match_parent"
+    tools:context=".activity.MainActivity">
+
+    <RelativeLayout
+        android:id="@+id/layout_action_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"
+        android:focusableInTouchMode="true"
+        android:paddingBottom="@dimen/dimen_4dp">
+
+        <ImageButton
+            android:id="@+id/btn_back"
+            style="@style/ImageButtonGeneral"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="@dimen/dimen_12dp"
+            android:layout_marginTop="@dimen/dimen_12dp"
+            android:contentDescription="@string/back_button"
+            android:src="@drawable/ic_baseline_keyboard_backspace_24" />
+
+        <TextView
+            android:id="@+id/tv_activity_title"
+            style="@style/TextContent.Bold"
+            android:layout_margin="@dimen/dimen_16dp"
+            android:layout_toEndOf="@id/btn_back"
+            android:gravity="start"
+            android:text="@string/favorite_users"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_18sp" />
+
+        <ImageButton
+            android:id="@+id/btn_setting"
+            style="@style/ImageButtonGeneral"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="@dimen/dimen_12dp"
+            android:layout_marginEnd="@dimen/dimen_8dp"
+            android:contentDescription="@string/language_settings"
+            android:src="@drawable/ic_baseline_settings_24" />
+
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/iv_not_found"
+        android:layout_width="@dimen/dimen_110dp"
+        android:layout_height="@dimen/dimen_110dp"
+        android:layout_centerInParent="true"
+        android:contentDescription="@string/there_are_no_favorite_users_yet"
+        android:src="@drawable/ic_img_not_found"
+        android:translationZ="90dp"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/tv_no_favorite"
+        style="@style/TextContent.Bold"
+        android:layout_below="@id/iv_not_found"
+        android:layout_centerHorizontal="true"
+        android:text="@string/there_are_no_favorite_users_yet"
+        android:textSize="@dimen/text_18sp"
+        android:translationZ="90dp"
+        android:visibility="gone" />
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/list_favorite_user_shimmer_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layout_action_bar"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone"
+        shimmer:shimmer_duration="1300">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <include layout="@layout/placeholder_list_user" />
+
+            <include layout="@layout/placeholder_list_user" />
+
+            <include layout="@layout/placeholder_list_user" />
+
+            <include layout="@layout/placeholder_list_user" />
+
+            <include layout="@layout/placeholder_list_user" />
+        </LinearLayout>
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_favorite_users"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layout_action_bar"
+        tools:listitem="@layout/item_list_users" />
+
+</RelativeLayout>

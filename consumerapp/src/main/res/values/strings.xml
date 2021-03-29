@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">GitHub Mates Consumer</string>
+    <string name="favorite_users">Favorite Users Consumer App</string>
+    <string name="back_button">Back Button</string>
+    <string name="language_settings">Language Settings</string>
+    <string name="there_are_no_favorite_users_yet">There are no favorite users yet</string>
+</resources>

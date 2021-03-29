@@ -7,6 +7,8 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.febian.android.githubmates.R
 import com.febian.android.githubmates.adapter.PagerAdapter
@@ -15,8 +17,8 @@ import com.febian.android.githubmates.databinding.ActivityDetailBinding
 import com.febian.android.githubmates.fragment.FollowersFragment
 import com.febian.android.githubmates.fragment.FollowingFragment
 import com.febian.android.githubmates.model.User
-import com.febian.android.githubmates.repository.FavoriteUserRepository
 import com.febian.android.githubmates.utils.WrapContentViewPager
+import com.febian.android.githubmates.viewmodel.FavoriteUserViewModel
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
 import kotlinx.coroutines.CoroutineScope
@@ -34,8 +36,8 @@ class DetailActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetailBinding
     private lateinit var user: User
+    private lateinit var favoriteUserViewModel: FavoriteUserViewModel
     private var username: String? = null
-    private val favoriteUserRepository = FavoriteUserRepository.get()
     private var isFavorite: Boolean? = null
 
     companion object {
@@ -48,9 +50,10 @@ class DetailActivity : AppCompatActivity() {
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        favoriteUserViewModel = ViewModelProvider(this).get(FavoriteUserViewModel::class.java)
+
         username = intent.getStringExtra(EXTRA_USERNAME)
         showLoading(true)
-        checkIsFavorite()
 
         if (savedInstanceState == null) {
             getUserDetail()
@@ -73,10 +76,10 @@ class DetailActivity : AppCompatActivity() {
                 val dispatcher = this.coroutineContext
                 CoroutineScope(dispatcher).launch {
                     isFavorite = if (isFavorite == true) {
-                        favoriteUserRepository.removeFromFavorite(user)
+                        favoriteUserViewModel.removeFromFavoriteUsers(user, this@DetailActivity)
                         false
                     } else {
-                        favoriteUserRepository.addToFavorite(user)
+                        favoriteUserViewModel.addToFavoriteUsers(user, this@DetailActivity)
                         true
                     }
                 }
@@ -111,6 +114,7 @@ class DetailActivity : AppCompatActivity() {
                         user = data
                         setUserDetail()
                     }
+                    checkIsFavorite()
                 }
             }
 
@@ -178,16 +182,18 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun checkIsFavorite() {
-        GlobalScope.launch {
-            val dispatcher = this.coroutineContext
-            CoroutineScope(dispatcher).launch {
-                if (username?.let { favoriteUserRepository.checkFavoriteUser(it) } == true) {
-                    showRemoveFavoriteButton()
-                    isFavorite = true
-                }
+        favoriteUserViewModel.checkFavoriteUser(user.id, this).observe(
+            this, getIsFavoriteUserObserver
+        )
+    }
+
+    private val getIsFavoriteUserObserver: Observer<User> =
+        Observer { user ->
+            user?.let {
+                isFavorite = true
+                showRemoveFavoriteButton()
             }
         }
-    }
 
     private fun countConverter(numValue: Int?): String {
         var finalValue: String = numValue.toString()
